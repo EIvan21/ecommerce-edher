@@ -13,6 +13,14 @@ view: users {
     sql: ${TABLE}.age ;;
   }
 
+  dimension: age_tier {
+    type: tier
+    tiers: [0,10,20,30,40,50,60,70,80,90,100]
+    # style: classic #Valor por default,
+    sql: ${age} ;;
+
+  }
+
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
@@ -86,5 +94,11 @@ view: users {
   measure: count {
     type: count
     drill_fields: [id, first_name, last_name, orders.count]
+  }
+
+  measure: average_age {
+    type: average
+    sql: ${age} ;;
+
   }
 }
