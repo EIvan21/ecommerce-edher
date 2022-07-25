@@ -1,4 +1,6 @@
+include: location.view
 view: users {
+  extends: [location]
   sql_table_name: public.users ;;
   drill_fields: [id]
 
@@ -24,6 +26,22 @@ view: users {
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+  }
+
+  dimension: city_link {
+    type: string
+    sql: ${TABLE}.city ;;
+    link: {
+      label: "Search the web"
+      url: "http://www.google.com/search?q={{ value | url_encode }}"
+      icon_url: "http://www.google.com/s2/favicons?domain=www.{{ value | url_encode }}.com"
+    }
+  }
+
+  dimension: order_history_button {
+    label: "Order History"
+    sql: ${TABLE}.id ;;
+    html: <a href="/explore/ecommerce_edher/order_items?fields=order_items.id, users.first_name, users.last_name, users.id, order_items.count, order_items.total_revenue&f[users.id]={{ value }}"><button>Order History</button></a> ;;
   }
 
   dimension: country {

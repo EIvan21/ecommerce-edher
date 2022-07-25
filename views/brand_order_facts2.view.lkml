@@ -1,7 +1,7 @@
 # If necessary, uncomment the line below to include explore_source.
 # include: "ecommerce_edher.model.lkml"
 
-view: brand_order_facts {
+view: brand_order_facts2 {
   derived_table: {
     explore_source: order_items {
       column: brand { field: products.brand }
@@ -9,6 +9,7 @@ view: brand_order_facts {
       derived_column: brand_rank {
         sql: row_number() over (order by total_revenue desc) ;;
       }
+      filters: [order_items.returned_date: "365 days"]
     }
   }
   dimension: brand {}

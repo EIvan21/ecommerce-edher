@@ -50,6 +50,18 @@ explore: order_items {
     sql_on: ${products.brand} = ${brand_order_facts.brand} ;;
     relationship: many_to_one
   }
+
+  join: brand_order_facts2 {
+    type: left_outer
+    sql_on: ${products.brand} = ${brand_order_facts.brand} ;;
+    relationship: many_to_one
+  }
+
+  join: brand_order_facts3 {
+    type: left_outer
+    sql_on: ${products.brand} = ${brand_order_facts.brand} ;;
+    relationship: many_to_one
+  }
 }
 
 explore: orders {
@@ -67,6 +79,12 @@ explore: product_facts {
     relationship: many_to_one
   }
 }
+
+
+
+
+
+
 
 explore: products {}
 
