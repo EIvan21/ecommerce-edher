@@ -39,6 +39,12 @@ explore: order_items {
     relationship: many_to_one
   }
 
+  join: user_details {
+    type: left_outer
+    sql_on: ${orders.user_id} = ${user_details.user_id} ;;
+    relationship: many_to_one
+  }
+
   join: products {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
@@ -63,6 +69,8 @@ explore: order_items {
     relationship: many_to_one
   }
 }
+
+
 
 explore: orders {
   join: users {
