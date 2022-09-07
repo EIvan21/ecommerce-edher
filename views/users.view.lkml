@@ -89,6 +89,13 @@ view: users {
     sql: CONCAT (${first_name}, ${last_name});;
   }
 
+  dimension: testing {
+    type: string
+    sql: CONCAT (${first_name},""/"",${last_name},""/"",${city},""/"",${country});;
+  }
+
+
+
   dimension: length_name {
     type: string
     sql: length(${full_name});;

@@ -35,10 +35,20 @@ view: order_items {
   }
 
   dimension: sale_price {
-    hidden: yes
+
     type: number
     value_format: "$0.00"
     sql: ${TABLE}.sale_price ;;
+  }
+
+  dimension: sale_price_string {
+    type: string
+    sql: ROUND(${sale_price},0) ;;
+  }
+
+  dimension: test_sale_price {
+    type: string
+    sql: CAST(CAST(ROUND(${sale_price}, 0) as decimal) as char(40)) ;;
   }
 
   measure: count {
